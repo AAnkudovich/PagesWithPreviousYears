@@ -16,6 +16,16 @@
     </div>
   <% end %>
 </div>
+        <% if user_signed_in? %> 
+        <a href="/users/sign_out" class="btn btn-default">Sign out</a>
+        <a href="/users/<%= current_user.id %>/edit/" class="btn btn-default">Edit Your profile</a>
+                   
+        <% else %>
+        
+
+        <a href="/users/sign_in" class="btn btn-default">Sign in</a>
+        <a href="/users/sign_up" class="btn btn-warning">Sign up</a>
+        <% end %> 
 
 <%= yield :top_content %>
 

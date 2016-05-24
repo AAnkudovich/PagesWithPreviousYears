@@ -1,29 +1,17 @@
 <p id="notice"><%= notice %></p>
-
+<div class="container">
 <p>
   <strong>Title:</strong>
   <%= @page.title %>
 </p>
-
+<hr>
 <p>
   <strong>Content:</strong>
-  <%= @page.content %>
+  <%= raw @page.content %>
 </p>
+</div>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @page.slug %>
-</p>
 
-<p>
-  <strong>Parentpage:</strong>
-  <%= @page.parentPage %>
-</p>
-
-<p>
-  <strong>Template:</strong>
-  <%= @page.template %>
-</p>
 
 <%= link_to 'Edit', edit_page_path(@page) %> |
 <%= link_to 'Back', pages_path %>
