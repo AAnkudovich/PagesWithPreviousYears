@@ -10,7 +10,8 @@
       </ul>
     </div>
   <% end %>
-
+<div class="col-sm-9">
+  <h2 class="display-the-year-being-edited"> </h2>
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -20,7 +21,8 @@
     <%= f.label :content %>
     <%= f.text_area :content %>
   </div>
-
+  </div>
+<div class="col-sm-3 text-center">
   <div class="field">
     <%= f.label :slug %>
     <%= f.text_field :slug %>
@@ -35,6 +37,7 @@
     <%= f.label :template %>
     <%= f.text_field :template %>
   </div>
+</div>
 
   <div class="actions">
     <%= f.submit %>
@@ -45,9 +48,61 @@
 
 <script  type="text/javascript">
   jQuery(document).ready(function($) {
-    $('#page_content').trumbowyg({
-        fullscreenable: true,
-        closable: false
+    $(".display-the-year-being-edited").text(" The year currently being edited is "+localStorage['myKey']);
+    
+
+    $.FroalaEditor.DefineIcon('insert', {NAME: 'child'});
+    $.FroalaEditor.RegisterCommand('insert', {
+      title: 'Insert Amendment Heading',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      callback: function () {
+        this.html.insert('<p class="Amendment-head">Amendment</p>');
+      }
     });
+    $.FroalaEditor.DefineIcon('remove', {NAME: 'remove'});
+    $.FroalaEditor.RegisterCommand('remove', {
+      title: 'Removed in this year',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<span class="removed-'+ localStorage['myKey'] +'">' + txt + '</span>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+    $.FroalaEditor.DefineIcon('add', {NAME: 'plus'});
+    $.FroalaEditor.RegisterCommand('add', {
+      title: 'Added in this year',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<span class="added-'+ localStorage['myKey'] +'">' + txt + '</span>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+
+    $('#page_content').froalaEditor(
+      {      toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'outdent', 'indent', 'createLink', 'insertImage', 'table', 'undo', 'redo', 'html', 'save', 'insertHorizontalRule', 'uploadFile', 'removeFormat', 'fullscreen','-','insert','|','remove','|','add'],
+    }
+      );
+    
+    $(".fa.fa-plus").parent().text("Added this year").css( "width","100px");
+    $(".fa.fa-remove").parent().text("Removed this year").css( "width","120px");
   });
+  
   </script>

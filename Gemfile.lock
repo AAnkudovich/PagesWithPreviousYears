@@ -189,6 +189,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise (~> 4.0.0.rc1)
+  font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
   listen (~> 3.0.5)
