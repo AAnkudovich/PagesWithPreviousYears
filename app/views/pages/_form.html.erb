@@ -51,8 +51,8 @@
     $(".display-the-year-being-edited").text(" The year currently being edited is "+localStorage['myKey']);
     
 
-    $.FroalaEditor.DefineIcon('insert', {NAME: 'child'});
-    $.FroalaEditor.RegisterCommand('insert', {
+    $.FroalaEditor.DefineIcon('heada', {NAME: 'child'});
+    $.FroalaEditor.RegisterCommand('heada', {
       title: 'Insert Amendment Heading',
       focus: true,
       undo: true,
@@ -61,6 +61,130 @@
         this.html.insert('<p class="Amendment-head">Amendment</p>');
       }
     });
+    
+    $.FroalaEditor.DefineIcon('headd', {NAME: 'wpbeginner'});
+    $.FroalaEditor.RegisterCommand('headd', {
+      title: 'Heading style',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Taxworld-Head">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+
+    $.FroalaEditor.DefineIcon('bodyd', {NAME: 'wpforms'});
+    $.FroalaEditor.RegisterCommand('bodyd', {
+      title: 'Standard text',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Taxworld-body">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+
+    $.FroalaEditor.DefineIcon('bodya', {NAME: 'viadeo'});
+    $.FroalaEditor.RegisterCommand('bodya', {
+      title: 'Amendmend text',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Amendment-body">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+    $.FroalaEditor.DefineIcon('indenta', {NAME: 'universal-access '});
+    $.FroalaEditor.RegisterCommand('indenta', {
+      title: 'First level indent',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Drive-indent-a">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+    $.FroalaEditor.DefineIcon('indenti', {NAME: 'car'});
+    $.FroalaEditor.RegisterCommand('indenti', {
+      title: 'Second level indent',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Drive-indent-i">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+    $.FroalaEditor.DefineIcon('indentI', {NAME: 'battery-empty'});
+    $.FroalaEditor.RegisterCommand('indentI', {
+      title: 'Third level indent',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Drive-indent-I">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+    $.FroalaEditor.DefineIcon('indentA', {NAME: 'battery-full'});
+    $.FroalaEditor.RegisterCommand('indentA', {
+      title: 'Third level indent',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Drive-indent-A">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+
+
     $.FroalaEditor.DefineIcon('remove', {NAME: 'remove'});
     $.FroalaEditor.RegisterCommand('remove', {
       title: 'Removed in this year',
@@ -91,18 +215,26 @@
 
                 var html = '<span class="added-'+ localStorage['myKey'] +'">' + txt + '</span>';
                 this.html.insert(html);
-                
-              
+    
       }
     });
 
     $('#page_content').froalaEditor(
-      {      toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'outdent', 'indent', 'createLink', 'insertImage', 'table', 'undo', 'redo', 'html', 'save', 'insertHorizontalRule', 'uploadFile', 'removeFormat', 'fullscreen','-','insert','|','remove','|','add'],
+      {      toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'outdent', 'indent', 'createLink', 'insertImage', 'table', 'undo', 'redo', 'html', 'fullscreen','-','headd','bodyd','heada','bodya','indenta','indenti','indentI','indentA','-','remove','add'],
     }
       );
     
-    $(".fa.fa-plus").parent().text("Added this year").css( "width","100px");
-    $(".fa.fa-remove").parent().text("Removed this year").css( "width","120px");
+    $(".fa.fa-plus").parent().text("Added this year").css( "width","120px").addClass("pull-right");
+    $(".fa.fa-remove").parent().text("Removed this year").css( "width","120px").addClass("pull-right");
+    $(".fa.fa-child").parent().text("HeadA").css( "width","80px");
+    $(".fa.fa-wpbeginner").parent().text("HeadD").css( "width","80px");
+    $(".fa.fa-wpforms").parent().text("BodyD").css( "width","80px");
+    $(".fa.fa-viadeo").parent().text("BodyA").css( "width","80px");
+    $(".fa.fa-universal-access").parent().text("Indent(a)").css( "width","80px");
+    $(".fa.fa-car").parent().text("Indent(i)").css( "width","80px");
+    $(".fa.fa-battery-empty").parent().text("Indent(I)").css( "width","80px");
+    $(".fa.fa-battery-full").parent().text("Indent(A)").css( "width","80px");
+    
   });
   
   </script>
