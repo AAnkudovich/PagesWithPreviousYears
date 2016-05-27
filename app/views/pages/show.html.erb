@@ -1,10 +1,11 @@
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %>
 <p id="notice"><%= notice %></p>
 <div class="container">
 <p>
   <strong>Title:</strong>
   <%= @page.title %>
-</p>
-<% if user_signed_in? %> 
+</p> 
 
 
 
@@ -14,34 +15,96 @@
               
                 
                       <select class="form-control " name="Legislation year" id="dueYear">
-                          <OPTION VALUE='2017' >2017</OPTION>
+                          <OPTION VALUE='2017' <% if !user_signed_in? %> DISABLED <%end%>  >2017</OPTION>
                           <OPTION VALUE='2016' >2016</OPTION>
-                          <OPTION VALUE='2015'>2015</OPTION>
-                          <OPTION VALUE='2014' >2014</OPTION>
-                          <OPTION VALUE='2013'>2013</OPTION>
-                          <OPTION VALUE='2012' >2012</OPTION>
-                          <OPTION VALUE='2011'>2011</OPTION>
-                          <OPTION VALUE='2010'>2010</OPTION>
+                          <OPTION VALUE='2015' <% if !user_signed_in? %> DISABLED <%end%>>2015</OPTION>
+                          <OPTION VALUE='2014' <% if !user_signed_in? %> DISABLED <%end%>>2014</OPTION>
+                          <OPTION VALUE='2013' <% if !user_signed_in? %> DISABLED <%end%>>2013</OPTION>
+                          <OPTION VALUE='2012' <% if !user_signed_in? %> DISABLED <%end%>>2012</OPTION>
+                          <OPTION VALUE='2011' <% if !user_signed_in? %> DISABLED <%end%>>2011</OPTION>
+                          <OPTION VALUE='2010' <% if !user_signed_in? %> DISABLED <%end%>>2010</OPTION>
+                          <% if !user_signed_in? %>
+                           <OPTION VALUE='' DISABLED>BACK YEARS AVAILABLE TO MEMBERS ONLY</OPTION>
+                           <%end%>
+                           <% if user_signed_in? %>
                           <OPTION VALUE='' DISABLED>MORE YEARS ADDED SOON</OPTION>
+                          <%end%>
                       </select>
                       </div>
     
       <script  type="text/javascript">
-       jQuery(document).ready(function($) {
-       	var myVar = localStorage['myKey'] || '2016';
+
+      function alertOptionValue(node_id){
+        //restore to origional
+        var list = document.getElementsByTagName('span'); 
+        for (var i = 0; i < list.length; ++i) {
+          list[i].removeAttribute("style");
+          }
+         //take in value of year selected
+         var dueDateYear = localStorage['myKey'];
+         //make it a string variable
+         var n = dueDateYear.toString();
+         //create name for a class
+         var spanaddedtobeshown="added-"+n;
+         //get all elements with that class
+         var x=document.getElementsByClassName(spanaddedtobeshown);
+         // apply style to each
+         for (var i = 0; i < x.length; ++i) {
+            x[i].style.backgroundColor = 'rgba(70, 191, 63, 0.53)';
+          }
+          //value selected used to highlight removed content that year
+          var b = dueDateYear;
+          var highlightremovedyearbefore= "removed-"+b.toString();
+          // find all elements removed year before and highlight in red
+          var y=document.getElementsByClassName(highlightremovedyearbefore);
+          for (var i = 0; i < y.length; ++i) {
+            //y[i].style.display = 'none';
+            y[i].style.backgroundColor = 'rgba(193, 66, 66, 0.53)';
+
+            }
+           //find all elements removed more than 1 years ago and hide them
+            for(var n = 1; n < 16; ++n){
+              var d = dueDateYear-n;
+              
+              var doNotDisplaySpansRemovedMoreThanYearAgo= "removed-"+d.toString();
+              var z=document.getElementsByClassName(doNotDisplaySpansRemovedMoreThanYearAgo);
+                for (var i = 0; i < z.length; ++i) {
+                  z[i].style.display = "none";
+                }
+            // hide elements added after the year selected
+              var k = parseInt(dueDateYear)+parseInt(n);
+              var doNotDisplaySpansAddedAfter= "added-"+k.toString();
+              var follow=document.getElementsByClassName(doNotDisplaySpansAddedAfter);
+                for (var i = 0; i < follow.length; ++i) {
+                  follow[i].style.display = "none";
+                }
+            }
+            }
+            
+          window.onload = function() {
+            alertOptionValue(localStorage['myKey']);
+            };
+           
+           jQuery(document).ready(function($) {
+           	
+            var myVar = localStorage['myKey'] || '2016';
+            if (typeof myVar !== 'undefined'){
+              localStorage['myKey']='2016';
+            }
        	
-         $('.form-control option[value='+myVar+']').attr('selected','selected');
-         
-       });
+             $('.form-control option[value='+myVar+']').attr('selected','selected');
+             alertOptionValue(localStorage['myKey']);
+           });
       
 
        $( ".form-control" ).change(function() {
 			  var selectedValue = $(".form-control").val();
 			  localStorage['myKey'] = selectedValue;
+        alertOptionValue(localStorage['myKey']);
 			});
 
       </script>
-      <%end%>
+      
 
 
 <hr>
@@ -53,5 +116,4 @@
 
 
 
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+

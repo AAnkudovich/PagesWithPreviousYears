@@ -10,7 +10,8 @@
       </ul>
     </div>
   <% end %>
-
+<div class="col-sm-9">
+  <h2 class="display-the-year-being-edited"> </h2>
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -20,7 +21,8 @@
     <%= f.label :content %>
     <%= f.text_area :content %>
   </div>
-
+  </div>
+<div class="col-sm-3 text-center">
   <div class="field">
     <%= f.label :slug %>
     <%= f.text_field :slug %>
@@ -35,6 +37,7 @@
     <%= f.label :template %>
     <%= f.text_field :template %>
   </div>
+</div>
 
   <div class="actions">
     <%= f.submit %>
@@ -44,10 +47,250 @@
 
 
 <script  type="text/javascript">
+function alertOptionValue(node_id)
+        {
+          //restore to origional
+            var list = document.getElementsByTagName('span');
+           
+            for (var i = 0; i < list.length; ++i) {
+              list[i].removeAttribute("style");
+              }
+             //take in value of year selected
+             var dueDateYear = localStorage['myKey'];
+             //make it a string variable
+             var n = dueDateYear.toString();
+             //create name for a class
+             var spanaddedtobeshown="added-"+n;
+             //get all elements with that class
+             var x=document.getElementsByClassName(spanaddedtobeshown);
+             // apply style to each
+             for (var i = 0; i < x.length; ++i) {
+                x[i].style.backgroundColor = 'rgba(70, 191, 63, 0.53)';
+              }
+              //value selected used to highlight removed content that year
+              var b = dueDateYear;
+              var highlightremovedyearbefore= "removed-"+b.toString();
+              // find all elements removed year before and highlight in red
+              var y=document.getElementsByClassName(highlightremovedyearbefore);
+              for (var i = 0; i < y.length; ++i) {
+              
+                //y[i].style.display = 'none';
+                y[i].style.backgroundColor = 'rgba(193, 66, 66, 0.53)';
+
+              }
+             //find all elements removed more than 1 years ago and hide them
+              for(var n = 1; n < 16; ++n){
+                var d = dueDateYear-n;
+                
+                var doNotDisplaySpansRemovedMoreThanYearAgo= "removed-"+d.toString();
+                var z=document.getElementsByClassName(doNotDisplaySpansRemovedMoreThanYearAgo);
+                  for (var i = 0; i < z.length; ++i) {
+                    z[i].style.display = "none";
+                  }
+              // hide elements added after the year selected
+                var k = parseInt(dueDateYear)+parseInt(n);
+                var doNotDisplaySpansAddedAfter= "added-"+k.toString();
+                var follow=document.getElementsByClassName(doNotDisplaySpansAddedAfter);
+                  for (var i = 0; i < follow.length; ++i) {
+                    follow[i].style.display = "none";
+                  }
+              }
+            }
+            
+  
   jQuery(document).ready(function($) {
-    $('#page_content').trumbowyg({
-        fullscreenable: true,
-        closable: false
+
+    $(".display-the-year-being-edited").text(" The year currently being edited is "+localStorage['myKey']);
+    
+
+    $.FroalaEditor.DefineIcon('heada', {NAME: 'child'});
+    $.FroalaEditor.RegisterCommand('heada', {
+      title: 'Insert Amendment Heading',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      callback: function () {
+        this.html.insert('<p class="Amendment-head">Amendment</p>');
+      }
     });
+    
+    $.FroalaEditor.DefineIcon('headd', {NAME: 'wpbeginner'});
+    $.FroalaEditor.RegisterCommand('headd', {
+      title: 'Heading style',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Taxworld-Head">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+
+    $.FroalaEditor.DefineIcon('bodyd', {NAME: 'wpforms'});
+    $.FroalaEditor.RegisterCommand('bodyd', {
+      title: 'Standard text',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Taxworld-body">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+
+    $.FroalaEditor.DefineIcon('bodya', {NAME: 'viadeo'});
+    $.FroalaEditor.RegisterCommand('bodya', {
+      title: 'Amendmend text',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Amendment-body">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+    $.FroalaEditor.DefineIcon('indenta', {NAME: 'universal-access '});
+    $.FroalaEditor.RegisterCommand('indenta', {
+      title: 'First level indent',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Drive-indent-a">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+    $.FroalaEditor.DefineIcon('indenti', {NAME: 'car'});
+    $.FroalaEditor.RegisterCommand('indenti', {
+      title: 'Second level indent',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Drive-indent-i">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+    $.FroalaEditor.DefineIcon('indentI', {NAME: 'battery-empty'});
+    $.FroalaEditor.RegisterCommand('indentI', {
+      title: 'Third level indent',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Drive-indent-I">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+    $.FroalaEditor.DefineIcon('indentA', {NAME: 'battery-full'});
+    $.FroalaEditor.RegisterCommand('indentA', {
+      title: 'Third level indent',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<p class="Drive-indent-A">' + txt + '</p>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+
+
+    $.FroalaEditor.DefineIcon('remove', {NAME: 'remove'});
+    $.FroalaEditor.RegisterCommand('remove', {
+      title: 'Removed in this year',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<span class="removed-'+ localStorage['myKey'] +'">' + txt + '</span>';
+                this.html.insert(html);
+                
+              
+      }
+    });
+    $.FroalaEditor.DefineIcon('add', {NAME: 'plus'});
+    $.FroalaEditor.RegisterCommand('add', {
+      title: 'Added in this year',
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html = '<span class="added-'+ localStorage['myKey'] +'">' + txt + '</span>';
+                this.html.insert(html);
+    
+      }
+    });
+
+    $('#page_content').froalaEditor(
+      {      toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'outdent', 'indent', 'createLink', 'insertImage', 'table', 'undo', 'redo', 'html', 'fullscreen','-','headd','bodyd','heada','bodya','indenta','indenti','indentI','indentA','-','remove','add'],
+    }
+      );
+    
+    $(".fa.fa-plus").parent().text("Added this year").css( "width","120px").addClass("pull-right");
+    $(".fa.fa-remove").parent().text("Removed this year").css( "width","120px").addClass("pull-right");
+    $(".fa.fa-child").parent().text("HeadA").css( "width","80px");
+    $(".fa.fa-wpbeginner").parent().text("HeadD").css( "width","80px");
+    $(".fa.fa-wpforms").parent().text("BodyD").css( "width","80px");
+    $(".fa.fa-viadeo").parent().text("BodyA").css( "width","80px");
+    $(".fa.fa-universal-access").parent().text("Indent(a)").css( "width","80px");
+    $(".fa.fa-car").parent().text("Indent(i)").css( "width","80px");
+    $(".fa.fa-battery-empty").parent().text("Indent(I)").css( "width","80px");
+    $(".fa.fa-battery-full").parent().text("Indent(A)").css( "width","80px");
+
+alertOptionValue(localStorage['myKey']);
+    
   });
+
+      
+  
   </script>
