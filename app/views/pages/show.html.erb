@@ -31,6 +31,8 @@
                           <%end%>
                       </select>
                       </div>
+                       <a href="javascript:window.print()" class="btn btn-default"><i class="fa fa-print fa-lg"></i></a>
+  
     
       <script  type="text/javascript">
 
@@ -40,6 +42,7 @@
         for (var i = 0; i < list.length; ++i) {
           list[i].removeAttribute("style");
           }
+        
          //take in value of year selected
          var dueDateYear = localStorage['myKey'];
          //make it a string variable
@@ -55,11 +58,12 @@
           //value selected used to highlight removed content that year
           var b = dueDateYear;
           var highlightremovedyearbefore= "removed-"+b.toString();
-          // find all elements removed year before and highlight in red
+          // find all elements removed this year and highlight in red
           var y=document.getElementsByClassName(highlightremovedyearbefore);
           for (var i = 0; i < y.length; ++i) {
             //y[i].style.display = 'none';
             y[i].style.backgroundColor = 'rgba(193, 66, 66, 0.53)';
+            y[i].className += " hidden-print";
 
             }
            //find all elements removed more than 1 years ago and hide them
@@ -87,20 +91,21 @@
            
            jQuery(document).ready(function($) {
            	
-            var myVar = localStorage['myKey'] || '2016';
-            if (typeof myVar !== 'undefined'){
-              localStorage['myKey']='2016';
-            }
+            var myVar = localStorage['myKey'];
+            
        	
              $('.form-control option[value='+myVar+']').attr('selected','selected');
              alertOptionValue(localStorage['myKey']);
+
            });
       
 
        $( ".form-control" ).change(function() {
 			  var selectedValue = $(".form-control").val();
 			  localStorage['myKey'] = selectedValue;
+        $(".hidden-print").removeClass("hidden-print");
         alertOptionValue(localStorage['myKey']);
+        
 			});
 
       </script>
