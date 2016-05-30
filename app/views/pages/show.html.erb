@@ -90,7 +90,9 @@
             };
            
            jQuery(document).ready(function($) {
-           	
+            if (localStorage.getItem('myKey') === null) {
+              localStorage['myKey']="2016"
+            }
             var myVar = localStorage['myKey'];
             
        	
