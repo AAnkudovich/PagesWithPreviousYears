@@ -32,6 +32,7 @@
                       </select>
                       </div>
                        <a href="javascript:window.print()" class="btn btn-default"><i class="fa fa-print fa-lg"></i></a>
+                      <a href="javascript:emailCurrentPage()" class="btn btn-default"><i class="fa fa-envelope-o fa-lg"></i></a>
   
     
       <script  type="text/javascript">
@@ -84,6 +85,11 @@
                 }
             }
             }
+            // email section/explanatory page
+            function emailCurrentPage(){
+              var mailto_link = 'mailto:'+""+'?subject=<%=@page.title%> - Taxworld&body=I thought this section may be of interest to you as it was in '+ localStorage['myKey'] + ' : %0D%0A' + escape(window.location.href) + '%0D%0A'+ '%0D%0APlease remember to view back years you have to be signed in with a valid membership.' + '%0D%0A' +'Taxworld Team'  ;
+              var win = window.open(mailto_link,'emailWindow');
+            }
             
           window.onload = function() {
             alertOptionValue(localStorage['myKey']);
