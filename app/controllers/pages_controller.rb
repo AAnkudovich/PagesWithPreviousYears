@@ -5,11 +5,26 @@ class PagesController < ApplicationController
   # GET /pages.json
   def index
     @pages = Page.all
+    respond_to do |format|
+      format.html
+      format.pdf do 
+        
+        render pdf: "Commentaries"
+      end
+    end
   end
 
   # GET /pages/1
   # GET /pages/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do 
+        
+        render pdf: @page.title
+      end
+
+    end
   end
 
   # GET /pages/new
