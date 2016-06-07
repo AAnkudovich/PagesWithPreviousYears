@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20160524150151) do
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
-    t.text     "content",    limit: 65535
+    t.text     "title",      limit: 65535
+    t.text     "content",    limit: 4294967295
     t.string   "slug"
     t.integer  "parentPage"
     t.string   "template"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
