@@ -35,3 +35,16 @@
 //= require plugins/url.min.js
 //= require turbolinks
 //= require_tree .
+
+
+jQuery(document).ready(function($) {
+// home page slideshow speed
+  $(".dropdown").hover(
+  function () {
+    $(this).addClass("open");
+  },
+  function () {
+    $(this).removeClass("open");
+  }
+  );
+});

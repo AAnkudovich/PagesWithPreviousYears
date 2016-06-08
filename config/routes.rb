@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 	 get "/login" => "devise/sessions#new"
 	end
   resources :pages
-  root to: 'pages#index'
+  root to: "information#home"
+  get 'information/home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
