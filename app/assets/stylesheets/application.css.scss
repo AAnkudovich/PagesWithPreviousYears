@@ -76,3 +76,59 @@
   font-size : 11pt; 
   font-family : Arial;
 }
+.desktop-header-taxworld-logo {
+    display: inline-block;
+    width: 220px;
+  }
+
+  .desktop-header-taxworld-logo img{
+    width: 100%;
+    max-width: 220px;
+    margin-top: 10px;
+  }
+  .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px; 
+}
+.navbar-default {
+  background-color: #fff;
+  background-color: #fff;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin-bottom: 0;
+  font-size:13px;
+}.dropdown {
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.navbar-collapse{
+    padding-left: 0;
+  }
+  .alternating-color-section-for-home-page{
+  background-color: rgb(242, 242, 242);
+  border-radius: 20px;
+  padding-top: 5px;
+}
+#seminar-home-page-box:hover{
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#books-home-page-box:hover{
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#members-area-home-page-box:hover{
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.attachment-shop_thumbnail{
+  width: 100px;
+  height: auto;
+}
+.dont-display-the-dot-on-li{
+  list-style-type:none;
+}
+.remove-space-on-the-left-in-uls + ul{
+  padding-left: 0;
+}

@@ -6,26 +6,58 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   </head>
 
   <body>
-  	<div class="container">
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>">
-      <%= value %>
+  	<div class="container-fluid">
+<div class="desktop-header-taxworld-logo hidden-xs hidden-sm">
+      <a href="/"> 
+        <img src="https://dvxtob0ynon8t.cloudfront.net/Taxworld-logo.svg" alt="Taxworld Logo">
+      </a>
     </div>
-  <% end %>
-</div>
-        <% if user_signed_in? %> 
-        <a href="/users/sign_out" class="btn btn-default">Sign out</a>
-        <a href="/users/<%= current_user.id %>/edit/" class="btn btn-default">Edit Your profile</a>
+
+<div class="btn-group pull-right visible-md-inline-block visible-lg-inline-block desktop-header-status-buttons" role="group">
+      <a href="/" title="Home" class=" btn btn-default"><i class="fa fa-home fa-taxworld-icon"></i></a>
+      <a href="https://twitter.com/taxworldie" title="Twitter" target="_blank" class="btn btn-default"><i class="fa fa-twitter fa-taxworld-icon"></i></a>
+      <a href="https://www.linkedin.com/company/taxworld-ltd" title="LinkedIn" target="_blank" class="btn btn-default"><i class="fa fa-linkedin fa-taxworld-icon"></i></a>
+      <% if user_signed_in? %> 
+
+        <a href="/users/sign_out" class="btn btn-primary">Logout</a>
+        <a href="/users/edit/" class="btn btn-default">Edit Your profile</a>
                    
         <% else %>
         
 
-        <a href="/users/sign_in" class="btn btn-default">Sign in</a>
+        <a href="/users/sign_in" class="btn btn-primary">Sign in</a>
         <a href="/users/sign_up" class="btn btn-warning">Sign up</a>
         <% end %> 
+    </div>
+
+ <div class="text-center visible-xs-block visible-sm-block mobile-header-status-buttons">
+      <div class="btn-group" role="group">
+        <a href="/" title="Home" class=" btn btn-default"><i class="fa fa-home fa-taxworld-icon"></i></a>
+        <a href="https://twitter.com/taxworldie" title="Twitter" target="_blank" class="btn btn-default"><i class="fa fa-twitter fa-taxworld-icon"></i></a>
+        <a href="https://www.linkedin.com/company/taxworld-ltd" title="LinkedIn" target="_blank" class="btn btn-default"><i class="fa fa-linkedin fa-taxworld-icon"></i></a>
+        
+        
+
+        <% if user_signed_in? %> 
+
+        <a href="/users/sign_out" class="btn btn-primary">Logout</a>
+        <a href="/users/edit/" class="btn btn-default">Edit Your profile</a>
+                   
+        <% else %>
+        
+
+        <a href="/users/sign_in" class="btn btn-primary">Sign in</a>
+        <a href="/users/sign_up" class="btn btn-warning">Sign up</a>
+        <% end %> 
+      </div>
+    </div>
+        
+        <%= render "layouts/header-navigation-bar" %>
 
 <%= yield :top_content %>
 
@@ -34,5 +66,6 @@
   
 </div>
     <%= yield %>
+  </div>
   </body>
 </html>
