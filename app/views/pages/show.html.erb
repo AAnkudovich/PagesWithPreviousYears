@@ -1,40 +1,61 @@
+<div class= " hidden-print">
 <%= link_to 'Edit', edit_page_path(@page) %> |
 <%= link_to 'Back', pages_path %>
+</div>
 <p id="notice"><%= notice %></p>
 <div class="container">
-<p>
+<p class= " hidden-print">
   <strong>Title:</strong>
   <%= @page.title %>
 </p> 
 
 
 
+    <div class="btn-group pull-right hidden-print">
 
 
-<div id="year_selection_area" class="controls text-center">
-              
-                
-                      <select class="form-control " name="Legislation year" id="dueYear">
-                          <OPTION VALUE='2017' <% if !user_signed_in? %> DISABLED <%end%>  >2017</OPTION>
-                          <OPTION VALUE='2016' >2016</OPTION>
-                          <OPTION VALUE='2015' <% if !user_signed_in? %> DISABLED <%end%>>2015</OPTION>
-                          <OPTION VALUE='2014' <% if !user_signed_in? %> DISABLED <%end%>>2014</OPTION>
-                          <OPTION VALUE='2013' <% if !user_signed_in? %> DISABLED <%end%>>2013</OPTION>
-                          <OPTION VALUE='2012' <% if !user_signed_in? %> DISABLED <%end%>>2012</OPTION>
-                          <OPTION VALUE='2011' <% if !user_signed_in? %> DISABLED <%end%>>2011</OPTION>
-                          <OPTION VALUE='2010' <% if !user_signed_in? %> DISABLED <%end%>>2010</OPTION>
-                          <% if !user_signed_in? %>
-                           <OPTION VALUE='' DISABLED>BACK YEARS AVAILABLE TO MEMBERS ONLY</OPTION>
-                           <%end%>
-                           <% if user_signed_in? %>
-                          <OPTION VALUE='' DISABLED>MORE YEARS ADDED SOON</OPTION>
-                          <%end%>
-                      </select>
-                      </div>
-                       <a href="javascript:window.print()" class="btn btn-default"><i class="fa fa-print fa-lg"></i></a>
-                      <a href="javascript:emailCurrentPage()" class="btn btn-default"><i class="fa fa-envelope-o fa-lg"></i></a>
-                     
-                      <%= link_to "Printable PDF", page_path(@page, :format => 'pdf') , target: "_blank", class: "btn btn-primary"%>
+
+                  
+
+        <%if @prev_page!=nil%>
+        <%= link_to @prev_page, class: "btn btn-default"  do %>
+        <i class="fa fa-caret-left fa-lg"></i> 
+        <%end%>
+        <%end%>
+        <a href="javascript:window.print()" class="btn btn-default"><i class="fa fa-print fa-lg"></i></a>
+        <a href="javascript:emailCurrentPage()" class="btn btn-default"><i class="fa fa-envelope-o fa-lg"></i></a>
+       
+        <%= link_to page_path(@page, :format => 'pdf') , target: "_blank", class: "btn btn-default" do %>
+            <i class="fa fa-file-pdf-o"></i> 
+          <% end %>
+          <%if @next_page!=nil%>
+        <%= link_to  @next_page, class: "btn btn-default"  do %>
+        <i class="fa fa-caret-right fa-lg"></i> 
+        <%end%>
+        <%end%>
+     </div>
+      <div id="year_selection_area" class="controls text-center">
+
+
+      <select class="form-control " name="Legislation year" id="dueYear">
+          <OPTION VALUE='2017' <% if !user_signed_in? %> DISABLED <%end%>  >2017</OPTION>
+          <OPTION VALUE='2016' >2016</OPTION>
+          <OPTION VALUE='2015' <% if !user_signed_in? %> DISABLED <%end%>>2015</OPTION>
+          <OPTION VALUE='2014' <% if !user_signed_in? %> DISABLED <%end%>>2014</OPTION>
+          <OPTION VALUE='2013' <% if !user_signed_in? %> DISABLED <%end%>>2013</OPTION>
+          <OPTION VALUE='2012' <% if !user_signed_in? %> DISABLED <%end%>>2012</OPTION>
+          <OPTION VALUE='2011' <% if !user_signed_in? %> DISABLED <%end%>>2011</OPTION>
+          <OPTION VALUE='2010' <% if !user_signed_in? %> DISABLED <%end%>>2010</OPTION>
+          <% if !user_signed_in? %>
+           <OPTION VALUE='' DISABLED>BACK YEARS AVAILABLE TO MEMBERS ONLY</OPTION>
+           <%end%>
+           <% if user_signed_in? %>
+          <OPTION VALUE='' DISABLED>MORE YEARS ADDED SOON</OPTION>
+          <%end%>
+      </select>
+      </div>
+                   
+
     
       <script  type="text/javascript">
 

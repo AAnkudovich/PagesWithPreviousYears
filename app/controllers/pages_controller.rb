@@ -17,6 +17,10 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+    if @page.id!=1
+    @prev_page = Page.find(@page.id-1)
+  end
+    @next_page = Page.find(@page.id+1)
     respond_to do |format|
       format.html
       format.pdf do 

@@ -132,3 +132,61 @@
 .remove-space-on-the-left-in-uls + ul{
   padding-left: 0;
 }
+@media print {
+  
+  p.Amendment-head {
+    color: red !important;
+    -webkit-print-color-adjust: exact; 
+    
+  }
+  p.Amendment-body {
+    color: red !important;
+    -webkit-print-color-adjust: exact; 
+    
+  }
+  .Taxworld-Head {
+  color: #3262a0!important;
+    -webkit-print-color-adjust: exact; 
+    
+  }
+
+
+  div.amendments .general{
+    color: red !important;
+      -webkit-print-color-adjust: exact; 
+    
+  }
+
+  h1.Amendment-head {
+    color: red !important;
+      -webkit-print-color-adjust: exact; 
+    
+  }
+  .amendments_header {
+    color: red !important;
+      -webkit-print-color-adjust: exact; 
+    
+  }
+
+  .row .col-md-8 h1.amendments_header{
+    color: red !important;
+      -webkit-print-color-adjust: exact; 
+    
+  }
+
+  p.amendments_header + p{
+    color: red !important;
+      -webkit-print-color-adjust: exact; 
+    
+  }
+
+
+  .desktop-header-taxworld-logo {
+    width: 200px;
+    display: block !important;
+  }
+
+  a[href]:after {
+    content: none !important;
+  }
+}
