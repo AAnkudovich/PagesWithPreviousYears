@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524150151) do
+ActiveRecord::Schema.define(version: 20160609093353) do
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "title",      limit: 65535
     t.text     "content",    limit: 4294967295
-    t.string   "slug"
+    t.text     "slug",       limit: 65535
     t.integer  "parentPage"
     t.string   "template"
     t.datetime "created_at",                    null: false

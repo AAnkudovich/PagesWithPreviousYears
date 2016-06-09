@@ -1,39 +1,89 @@
 <div class= " hidden-print">
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+<%= link_to 'Edit', edit_page_path(@page) %> 
 </div>
 <p id="notice"><%= notice %></p>
 <div class="container">
 <p class= " hidden-print">
-  <strong>Title:</strong>
+  <%= link_to_unless_current("Home", root_path) %>
+<% 
+parentingArray = []
+if @page.parentPage!=nil
+@parent = Page.find(@page.parentPage)
+parentingArray.push(@parent)
+end
+if parentingArray[0]!=nil
+while parentingArray[parentingArray.size-1].parentPage!=nil
+@parent = Page.find(parentingArray[parentingArray.size-1].parentPage)
+parentingArray.push(@parent)
+end
+end
+%> 
+<% parentingArray.reverse_each do |page| %>
+  >> <%= link_to page.title, page%>
+
+<%end%>
+
+  >>
   <%= @page.title %>
 </p> 
+<%if @page.template=="Listing"%>
+<% childrenPages = Page.where(:parentPage => @page.id)%>
 
+<% childrenPages.each do |child|%>
+<%= link_to child.title, child%><br>
+
+<%end%>
+
+<%else%>
 
 
     <div class="btn-group pull-right hidden-print">
-
-
+        <%if @page.id>3%>
+        <% prevPage = Page.find(@page.id-3)%>
+        <% if prevPage.parentPage == @page.parentPage%>
+         <%= link_to  prevPage, class: "btn btn-default" do %>
+            <i class="fa fa-caret-left fa-lg"></i>
+          <%end%>
+          <%end%>
+          <%end%>
 
                   
 
-        <%if @prev_page!=nil%>
-        <%= link_to @prev_page, class: "btn btn-default"  do %>
-        <i class="fa fa-caret-left fa-lg"></i> 
-        <%end%>
-        <%end%>
+        
+        
         <a href="javascript:window.print()" class="btn btn-default"><i class="fa fa-print fa-lg"></i></a>
         <a href="javascript:emailCurrentPage()" class="btn btn-default"><i class="fa fa-envelope-o fa-lg"></i></a>
        
         <%= link_to page_path(@page, :format => 'pdf') , target: "_blank", class: "btn btn-default" do %>
             <i class="fa fa-file-pdf-o"></i> 
           <% end %>
-          <%if @next_page!=nil%>
-        <%= link_to  @next_page, class: "btn btn-default"  do %>
-        <i class="fa fa-caret-right fa-lg"></i> 
-        <%end%>
-        <%end%>
+          
+          <%comandguidpages = Page.where(parentPage: @page.id)%>
+          <% comandguidpages.each do |page| %>
+              
+              <%if page.title.include? " Commentary - Taxworld Ireland"%>
+                <%= link_to "Commentary", page , class: "btn btn-default"%>
+
+                <%elsif page.title.include? " Guidance Notes - Taxworld Ireland"%>
+                <%= link_to "Guidance note", page , class: "btn btn-default"%>
+                <%end%>
+              
+            <% end %>
+
+
+
+
+        <% nextPage = Page.find(@page.id+3)%>
+           <% if nextPage.parentPage == @page.parentPage%>
+          <%= link_to  nextPage, class: "btn btn-default" do %>
+            <i class="fa fa-caret-right fa-lg"></i>
+          <%end%>
+          <%end%>
+
+          
+          
      </div>
+
       <div id="year_selection_area" class="controls text-center">
 
 
@@ -46,6 +96,19 @@
           <OPTION VALUE='2012' <% if !user_signed_in? %> DISABLED <%end%>>2012</OPTION>
           <OPTION VALUE='2011' <% if !user_signed_in? %> DISABLED <%end%>>2011</OPTION>
           <OPTION VALUE='2010' <% if !user_signed_in? %> DISABLED <%end%>>2010</OPTION>
+          <OPTION VALUE='2009' <% if !user_signed_in? %> DISABLED <%end%>>2009</OPTION>
+          <OPTION VALUE='2008' <% if !user_signed_in? %> DISABLED <%end%>>2008</OPTION>
+          <OPTION VALUE='2007' <% if !user_signed_in? %> DISABLED <%end%>>2007</OPTION>
+          <OPTION VALUE='2006' <% if !user_signed_in? %> DISABLED <%end%>>2006</OPTION>
+          <OPTION VALUE='2005' <% if !user_signed_in? %> DISABLED <%end%>>2005</OPTION>
+          <OPTION VALUE='2004' <% if !user_signed_in? %> DISABLED <%end%>>2004</OPTION>
+          <OPTION VALUE='2003' <% if !user_signed_in? %> DISABLED <%end%>>2003</OPTION>
+          <OPTION VALUE='2002' <% if !user_signed_in? %> DISABLED <%end%>>2002</OPTION>
+          <OPTION VALUE='2000' <% if !user_signed_in? %> DISABLED <%end%>>2000</OPTION>
+          <OPTION VALUE='2000' <% if !user_signed_in? %> DISABLED <%end%>>2000</OPTION>
+          <OPTION VALUE='1999' <% if !user_signed_in? %> DISABLED <%end%>>1999</OPTION>
+          <OPTION VALUE='1998' <% if !user_signed_in? %> DISABLED <%end%>>1998</OPTION>
+          <OPTION VALUE='1997' <% if !user_signed_in? %> DISABLED <%end%>>1997</OPTION>
           <% if !user_signed_in? %>
            <OPTION VALUE='' DISABLED>BACK YEARS AVAILABLE TO MEMBERS ONLY</OPTION>
            <%end%>
@@ -90,7 +153,7 @@
 
             }
            //find all elements removed more than 1 years ago and hide them
-            for(var n = 1; n < 16; ++n){
+            for(var n = 1; n < 21; ++n){
               var d = dueDateYear-n;
               
               var doNotDisplaySpansRemovedMoreThanYearAgo= "removed-"+d.toString();
@@ -153,6 +216,7 @@
   </div>
 
 </div>
+<%end%>
 
 
 

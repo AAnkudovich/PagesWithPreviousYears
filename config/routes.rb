@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_scope :user do
 	 get "/login" => "devise/sessions#new"
 	end
-  resources :pages
+  resources :pages , :path => 'p'
   root to: "information#home"
   get 'information/home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

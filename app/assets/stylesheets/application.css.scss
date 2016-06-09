@@ -190,3 +190,21 @@
     content: none !important;
   }
 }
+.mobile-header-status-buttons {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.desktop-header-status-buttons {
+    z-index: 9;
+    margin-top: 15px;
+  }
+  .carousel-control {    
+  width: 4%;    
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+.carousel-inner .item img {
+  width: 100%;
+}
