@@ -8,32 +8,45 @@
   <strong>Title:</strong>
   <%= @page.title %>
 </p> 
+<%if @page.template=="Listing"%>
+<% childrenPages = Page.where(:parentPage => @page.id)%>
 
+<% childrenPages.each do |child|%>
+<%= link_to child.title, child%><br>
+
+<%end%>
+
+<%else%>
 
 
     <div class="btn-group pull-right hidden-print">
 
-
+        <% prevPage = Page.find(@page.id-3)%>
+        <% if prevPage.parentPage == @page.parentPage%>
+         <%= link_to  prevPage, class: "btn btn-default" do %>
+            <i class="fa fa-caret-left fa-lg"></i>
+          <%end%>
+          <%end%>
 
                   
 
-        <%if @prev_page!=nil%>
-        <%= link_to @prev_page, class: "btn btn-default"  do %>
-        <i class="fa fa-caret-left fa-lg"></i> 
-        <%end%>
-        <%end%>
+        
+        
         <a href="javascript:window.print()" class="btn btn-default"><i class="fa fa-print fa-lg"></i></a>
         <a href="javascript:emailCurrentPage()" class="btn btn-default"><i class="fa fa-envelope-o fa-lg"></i></a>
        
         <%= link_to page_path(@page, :format => 'pdf') , target: "_blank", class: "btn btn-default" do %>
             <i class="fa fa-file-pdf-o"></i> 
           <% end %>
-          <%if @next_page!=nil%>
-        <%= link_to  @next_page, class: "btn btn-default"  do %>
-        <i class="fa fa-caret-right fa-lg"></i> 
-        <%end%>
-        <%end%>
+        <% nextPage = Page.find(@page.id+3)%>
+           <% if nextPage.parentPage == @page.parentPage%>
+          <%= link_to  nextPage, class: "btn btn-default" do %>
+            <i class="fa fa-caret-right fa-lg"></i>
+          <%end%>
+          <%end%>
+          
      </div>
+
       <div id="year_selection_area" class="controls text-center">
 
 
@@ -153,6 +166,7 @@
   </div>
 
 </div>
+<%end%>
 
 
 

@@ -4,7 +4,8 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = Page.all
+
+    @pages = Page.where(parentPage: nil )
     respond_to do |format|
       format.html
       format.pdf do 
@@ -17,10 +18,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-    if @page.id!=1
-    @prev_page = Page.find(@page.id-1)
-  end
-    @next_page = Page.find(@page.id+1)
+   
     respond_to do |format|
       format.html
       format.pdf do 
@@ -34,20 +32,29 @@ class PagesController < ApplicationController
   # GET /pages/new
   def new
     @page = Page.new
+    @pages = Page.all
   end
 
   # GET /pages/1/edit
   def edit
+    @pages = Page.all
   end
 
   # POST /pages
   # POST /pages.json
   def create
     @page = Page.new(page_params)
+    if @page.parentPage != nil 
+    @parentPage = Page.find(@page.parentPage)
+    @page.slug = @parentPage.slug + "/" + @page.title.parameterize
+  else
+    @page.slug = @page.title.parameterize
+  end
+    
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
+        format.html { redirect_to :back, notice: 'Page was successfully created.' }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new }
@@ -60,8 +67,40 @@ class PagesController < ApplicationController
   # PATCH/PUT /pages/1.json
   def update
     respond_to do |format|
+      # allow for later assignment of parent page
       if @page.update(page_params)
-        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        pageHash= Hash.new
+        if @page.parentPage != nil
+          @parentPage = Page.find(@page.parentPage)
+
+          if !@page.slug.include? @parentPage.slug
+              
+              
+              pageHash["slug"]=@parentPage.slug + "/" + @page.title.parameterize
+              
+            end
+            else
+            pageHash["slug"] = @page.title.parameterize
+          end
+          @page.update(pageHash)
+
+        @childpages = Page.where(parentPage: @page.id)
+        @childpages.each do |childpage|
+          childUpdateHash = Hash.new
+          @makeTitleintoURL = childpage.title.parameterize
+          childUpdateHash["slug"]=[@page.slug, @makeTitleintoURL].join("/")
+          childpage.update(childUpdateHash)
+
+          @grandchildpages = Page.where(parentPage: childpage.id)
+            @grandchildpages.each do |grandchildpage|
+              grandchildUpdateHash = Hash.new
+              @makeTitleintoURLgrand = grandchildpage.title.parameterize
+              grandchildUpdateHash["slug"]=[childpage.slug, @makeTitleintoURLgrand].join("/")
+              grandchildpage.update(grandchildUpdateHash)
+
+            end
+        end
+        format.html { redirect_to pages_url, notice: 'Page was successfully updated.' }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit }

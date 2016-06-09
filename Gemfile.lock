@@ -115,6 +115,7 @@ GEM
     ntlm-http (0.1.1)
     orm_adapter (0.5.0)
     puma (3.4.0)
+    query_diet (0.6.0)
     rack (2.0.0.rc1)
       json
     rack-test (0.6.3)
@@ -214,6 +215,7 @@ DEPENDENCIES
   mechanize
   mysql2 (>= 0.3.18, < 0.5)
   puma (~> 3.0)
+  query_diet
   rails (>= 5.0.0.rc1, < 5.1)
   sass-rails (~> 5.0)
   spring

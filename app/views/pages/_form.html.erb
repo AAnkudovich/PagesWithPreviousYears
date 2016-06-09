@@ -14,7 +14,7 @@
   <h2 class="display-the-year-being-edited"> </h2>
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title ,:class => "form-control"%>
   </div>
 
   <div class="field">
@@ -30,7 +30,7 @@
 
   <div class="field">
     <%= f.label :parentPage %>
-    <%= f.number_field :parentPage %>
+    <%= f.collection_select(:parentPage, @pages, :id, :title, :prompt => 'Select') %>
   </div>
 
   <div class="field">
