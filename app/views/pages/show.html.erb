@@ -38,11 +38,12 @@ end
 
 
     <div class="btn-group pull-right hidden-print">
-
+        <%if @page.id>3%>
         <% prevPage = Page.find(@page.id-3)%>
         <% if prevPage.parentPage == @page.parentPage%>
          <%= link_to  prevPage, class: "btn btn-default" do %>
             <i class="fa fa-caret-left fa-lg"></i>
+          <%end%>
           <%end%>
           <%end%>
 
@@ -56,7 +57,7 @@ end
         <%= link_to page_path(@page, :format => 'pdf') , target: "_blank", class: "btn btn-default" do %>
             <i class="fa fa-file-pdf-o"></i> 
           <% end %>
-
+          
           <%comandguidpages = Page.where(parentPage: @page.id)%>
           <% comandguidpages.each do |page| %>
               
@@ -95,6 +96,19 @@ end
           <OPTION VALUE='2012' <% if !user_signed_in? %> DISABLED <%end%>>2012</OPTION>
           <OPTION VALUE='2011' <% if !user_signed_in? %> DISABLED <%end%>>2011</OPTION>
           <OPTION VALUE='2010' <% if !user_signed_in? %> DISABLED <%end%>>2010</OPTION>
+          <OPTION VALUE='2009' <% if !user_signed_in? %> DISABLED <%end%>>2009</OPTION>
+          <OPTION VALUE='2008' <% if !user_signed_in? %> DISABLED <%end%>>2008</OPTION>
+          <OPTION VALUE='2007' <% if !user_signed_in? %> DISABLED <%end%>>2007</OPTION>
+          <OPTION VALUE='2006' <% if !user_signed_in? %> DISABLED <%end%>>2006</OPTION>
+          <OPTION VALUE='2005' <% if !user_signed_in? %> DISABLED <%end%>>2005</OPTION>
+          <OPTION VALUE='2004' <% if !user_signed_in? %> DISABLED <%end%>>2004</OPTION>
+          <OPTION VALUE='2003' <% if !user_signed_in? %> DISABLED <%end%>>2003</OPTION>
+          <OPTION VALUE='2002' <% if !user_signed_in? %> DISABLED <%end%>>2002</OPTION>
+          <OPTION VALUE='2000' <% if !user_signed_in? %> DISABLED <%end%>>2000</OPTION>
+          <OPTION VALUE='2000' <% if !user_signed_in? %> DISABLED <%end%>>2000</OPTION>
+          <OPTION VALUE='1999' <% if !user_signed_in? %> DISABLED <%end%>>1999</OPTION>
+          <OPTION VALUE='1998' <% if !user_signed_in? %> DISABLED <%end%>>1998</OPTION>
+          <OPTION VALUE='1997' <% if !user_signed_in? %> DISABLED <%end%>>1997</OPTION>
           <% if !user_signed_in? %>
            <OPTION VALUE='' DISABLED>BACK YEARS AVAILABLE TO MEMBERS ONLY</OPTION>
            <%end%>
@@ -139,7 +153,7 @@ end
 
             }
            //find all elements removed more than 1 years ago and hide them
-            for(var n = 1; n < 16; ++n){
+            for(var n = 1; n < 21; ++n){
               var d = dueDateYear-n;
               
               var doNotDisplaySpansRemovedMoreThanYearAgo= "removed-"+d.toString();

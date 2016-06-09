@@ -100,7 +100,7 @@ class PagesController < ApplicationController
 
             end
         end
-        format.html { redirect_to pages_url, notice: 'Page was successfully updated.' }
+        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit }

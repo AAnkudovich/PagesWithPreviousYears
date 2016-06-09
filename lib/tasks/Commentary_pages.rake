@@ -7,8 +7,8 @@ task :import_commentary => :environment do
 	# login to the system
 	agent.get("http://www.taxworld.ie/login/")
 	form = agent.page.forms.first
-	form.username="AAnkudovich"
-	form.password="1Hello11"
+	form.username=""
+	form.password=""
 	form.submit
 
 	# go to the page containing all the links
@@ -37,8 +37,8 @@ task :import_commentary => :environment do
 	# login to the system
 	agent.get("http://www.taxworld.ie/login/")
 	form = agent.page.forms.first
-	form.username="AAnkudovich"
-	form.password="1Hello11"
+	form.username=""
+	form.password=""
 	form.submit
 
 	# go to the page containing all the links
