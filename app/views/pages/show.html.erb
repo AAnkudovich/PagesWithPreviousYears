@@ -181,12 +181,8 @@ end
             };
            
            jQuery(document).ready(function($) {
-            if (localStorage.getItem('myKey') === null) {
-              localStorage['myKey']="2016"
-            }
-            <% if !user_signed_in?%>
-             localStorage['myKey']="2016"
-             <%end%>
+            
+            
             var myVar = localStorage['myKey'];
             
        	
