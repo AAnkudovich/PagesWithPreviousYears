@@ -135,11 +135,10 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+        $('.Clean-it').removeAttr('class');
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Taxworld-Head');
        
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="Taxworld-Head">' + txt + '</p>';
-                this.html.insert(html);
                 
               
       }
@@ -153,13 +152,11 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
-       
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="Taxworld-body">' + txt + '</p>';
-                this.html.insert(html);
-                
-              
+        
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+        $('.Clean-it').removeAttr('class');
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Taxworld-body');
+             
       }
     });
 
@@ -171,11 +168,9 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
-       
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="Amendment-body">' + txt + '</p>';
-                this.html.insert(html);
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+        $('.Clean-it').removeAttr('class');
+       $('#page_content').froalaEditor('paragraphStyle.apply', 'Amendment-body');
                 
               
       }
@@ -188,12 +183,10 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
-       
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="Drive-indent-a">' + txt + '</p>';
-                this.html.insert(html);
-                
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+        $('.Clean-it').removeAttr('class');
+       $('#page_content').froalaEditor('paragraphStyle.apply', 'Drive-indent-a');
+             
               
       }
     });
@@ -205,12 +198,10 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
-       
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="Drive-indent-i">' + txt + '</p>';
-                this.html.insert(html);
-                
+      $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+      $('.Clean-it').removeAttr('class');
+      $('#page_content').froalaEditor('paragraphStyle.apply', 'Drive-indent-i');
+             
               
       }
     });
@@ -222,12 +213,10 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
+      $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+      $('.Clean-it').removeAttr('class');
+      $('#page_content').froalaEditor('paragraphStyle.apply', 'Drive-indent-I');
        
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="Drive-indent-I">' + txt + '</p>';
-                this.html.insert(html);
-                
               
       }
     });
@@ -239,12 +228,10 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+      $('.Clean-it').removeAttr('class');
+      $('#page_content').froalaEditor('paragraphStyle.apply', 'Drive-indent-A');
        
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="Drive-indent-A">' + txt + '</p>';
-                this.html.insert(html);
-                
               
       }
     });
@@ -307,12 +294,10 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+      $('.Clean-it').removeAttr('class');
+      $('#page_content').froalaEditor('paragraphStyle.apply', 'second-line-indent');
        
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="second-line-indent">' + txt + '</p>';
-                this.html.insert(html);
-    
       }
     });
 
@@ -324,12 +309,10 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+      $('.Clean-it').removeAttr('class');
+      $('#page_content').froalaEditor('paragraphStyle.apply', 'second-dual-line-indent');
        
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="second-dual-line-indent">' + txt + '</p>';
-                this.html.insert(html);
-    
       }
     });
 
@@ -341,12 +324,10 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+      $('.Clean-it').removeAttr('class');
+      $('#page_content').froalaEditor('paragraphStyle.apply', 'second-AI-indent');
        
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="second-AI-indent">' + txt + '</p>';
-                this.html.insert(html);
-    
       }
     });
 
@@ -358,12 +339,10 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+      $('.Clean-it').removeAttr('class');
+      $('#page_content').froalaEditor('paragraphStyle.apply', 'second-III-indent');
        
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="second-III-indent">' + txt + '</p>';
-                this.html.insert(html);
-    
       }
     });
 
@@ -375,11 +354,10 @@ function alertOptionValue(node_id)
       refreshAfterCallback: true,
       
       callback: function () {
+        $('#page_content').froalaEditor('paragraphStyle.apply', 'Clean-it');
+      $('.Clean-it').removeAttr('class');
+      $('#page_content').froalaEditor('paragraphStyle.apply', 'second-IIC-indent');
        
-              var txt =$('#page_content').froalaEditor('selection.text');
-
-                var html = '<p class="second-IIC-indent">' + txt + '</p>';
-                this.html.insert(html);
     
       }
     });
