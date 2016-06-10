@@ -9,9 +9,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script>
+    
+            if (localStorage.getItem('myKey') === null) {
+              localStorage['myKey']="2016"
+            }
+            <% if !user_signed_in?%>
+             localStorage['myKey']="2016"
+             <%end%>
+    </script>
   </head>
 
   <body>
+
     <%= query_diet_widget if Rails.env.development? %>
   
   	<div class="container-fluid">
