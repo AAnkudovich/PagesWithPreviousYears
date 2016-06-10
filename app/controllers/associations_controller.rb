@@ -10,6 +10,8 @@ class AssociationsController < ApplicationController
   # GET /associations/1
   # GET /associations/1.json
   def show
+    @page = Page.find(@association.pageID)
+    redirect_to page_path(@page.slug)
   end
 
   # GET /associations/new

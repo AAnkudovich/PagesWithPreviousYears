@@ -15,6 +15,7 @@
     <% @associations.each do |association| %>
       <tr>
         <td><%= association.pagename %></td>
+        <td><%= association.id %></td>
         <td><%= association.pageID %></td>
         <td><%= link_to 'Show', association %></td>
         <td><%= link_to 'Edit', edit_association_path(association) %></td>
