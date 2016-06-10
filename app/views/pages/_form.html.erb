@@ -259,7 +259,7 @@ function alertOptionValue(node_id)
       
       callback: function () {
        
-              var txt =$('#page_content').froalaEditor('selection.text');
+              var txt =$('#page_content').froalaEditor('html.getSelected');
 
                 var html = '<span class="removed-'+ localStorage['myKey'] +'">' + txt + '</span>';
                 this.html.insert(html);
@@ -276,7 +276,7 @@ function alertOptionValue(node_id)
       
       callback: function () {
        
-              var txt =$('#page_content').froalaEditor('selection.text');
+              var txt =$('#page_content').froalaEditor('html.getSelected');
 
                 var html = '<span class="added-'+ localStorage['myKey'] +'">' + txt + '</span>';
                 this.html.insert(html);
