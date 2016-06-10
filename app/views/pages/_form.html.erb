@@ -118,7 +118,7 @@ function alertOptionValue(node_id)
 
     $.FroalaEditor.DefineIcon('heada', {NAME: 'child'});
     $.FroalaEditor.RegisterCommand('heada', {
-      title: 'Insert Amendment Heading',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -129,7 +129,7 @@ function alertOptionValue(node_id)
     
     $.FroalaEditor.DefineIcon('headd', {NAME: 'wpbeginner'});
     $.FroalaEditor.RegisterCommand('headd', {
-      title: 'Heading style',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -147,7 +147,7 @@ function alertOptionValue(node_id)
 
     $.FroalaEditor.DefineIcon('bodyd', {NAME: 'wpforms'});
     $.FroalaEditor.RegisterCommand('bodyd', {
-      title: 'Standard text',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -165,7 +165,7 @@ function alertOptionValue(node_id)
 
     $.FroalaEditor.DefineIcon('bodya', {NAME: 'viadeo'});
     $.FroalaEditor.RegisterCommand('bodya', {
-      title: 'Amendmend text',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -182,7 +182,7 @@ function alertOptionValue(node_id)
     });
     $.FroalaEditor.DefineIcon('indenta', {NAME: 'universal-access '});
     $.FroalaEditor.RegisterCommand('indenta', {
-      title: 'First level indent',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -199,7 +199,7 @@ function alertOptionValue(node_id)
     });
     $.FroalaEditor.DefineIcon('indenti', {NAME: 'car'});
     $.FroalaEditor.RegisterCommand('indenti', {
-      title: 'Second level indent',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -216,7 +216,7 @@ function alertOptionValue(node_id)
     });
     $.FroalaEditor.DefineIcon('indentI', {NAME: 'battery-empty'});
     $.FroalaEditor.RegisterCommand('indentI', {
-      title: 'Third level indent',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -233,7 +233,7 @@ function alertOptionValue(node_id)
     });
     $.FroalaEditor.DefineIcon('indentA', {NAME: 'battery-full'});
     $.FroalaEditor.RegisterCommand('indentA', {
-      title: 'Third level indent',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -252,7 +252,7 @@ function alertOptionValue(node_id)
 
     $.FroalaEditor.DefineIcon('remove', {NAME: 'remove'});
     $.FroalaEditor.RegisterCommand('remove', {
-      title: 'Removed in this year',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -269,7 +269,7 @@ function alertOptionValue(node_id)
     });
     $.FroalaEditor.DefineIcon('add', {NAME: 'plus'});
     $.FroalaEditor.RegisterCommand('add', {
-      title: 'Added in this year',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -283,9 +283,25 @@ function alertOptionValue(node_id)
     
       }
     });
+    $.FroalaEditor.DefineIcon('removeyearvariation', {NAME: 'leanpub'});
+    $.FroalaEditor.RegisterCommand('removeyearvariation', {
+      
+      focus: true,
+      undo: true,
+      refreshAfterCallback: true,
+      
+      callback: function () {
+       
+              var txt =$('#page_content').froalaEditor('selection.text');
+
+                var html =  txt ;
+                this.html.insert(html);
+    
+      }
+    });
     $.FroalaEditor.DefineIcon('secondlineindent', {NAME: 'building'});
     $.FroalaEditor.RegisterCommand('secondlineindent', {
-      title: 'Indent from second line',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -302,7 +318,7 @@ function alertOptionValue(node_id)
 
     $.FroalaEditor.DefineIcon('secondlinedualindent', {NAME: 'bullhorn'});
     $.FroalaEditor.RegisterCommand('secondlinedualindent', {
-      title: 'Indent from second line with additional a indent',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -319,7 +335,7 @@ function alertOptionValue(node_id)
 
     $.FroalaEditor.DefineIcon('secondlineAIindent', {NAME: 'gift'});
     $.FroalaEditor.RegisterCommand('secondlineAIindent', {
-      title: 'Indent from second line with additional a indent',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -336,7 +352,7 @@ function alertOptionValue(node_id)
 
     $.FroalaEditor.DefineIcon('secondlineIIIindent', {NAME: 'hourglass'});
     $.FroalaEditor.RegisterCommand('secondlineIIIindent', {
-      title: 'Indent from second line with additional a indent',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -353,7 +369,7 @@ function alertOptionValue(node_id)
 
     $.FroalaEditor.DefineIcon('secondlineIICindent', {NAME: 'random'});
     $.FroalaEditor.RegisterCommand('secondlineIICindent', {
-      title: 'Indent from second line with additional a indent',
+      
       focus: true,
       undo: true,
       refreshAfterCallback: true,
@@ -369,12 +385,13 @@ function alertOptionValue(node_id)
     });
 
     $('#page_content').froalaEditor(
-      {      toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'outdent', 'indent', 'createLink', 'insertImage', 'insertTable', 'undo', 'redo', 'html', 'fullscreen','-','headd','bodyd','heada','bodya','indenta','indenti','indentI','indentA','secondlineindent','secondlinedualindent','secondlineAIindent','secondlineIIIindent','secondlineIICindent','-','remove','add'],
+      {      toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'outdent', 'indent', 'createLink', 'insertImage', 'insertTable', 'undo', 'redo', 'html', 'fullscreen','-','headd','bodyd','heada','bodya','indenta','indenti','indentI','indentA','secondlineindent','secondlinedualindent','secondlineAIindent','secondlineIIIindent','secondlineIICindent','-','remove','add','removeyearvariation'],
     }
       );
     
     $(".fa.fa-plus").parent().text("Added this year").css( "width","120px").addClass("pull-right");
     $(".fa.fa-remove").parent().text("Removed this year").css( "width","120px").addClass("pull-right");
+    $(".fa.fa-leanpub").parent().text("Clear year change").css( "width","150px").addClass("pull-right");
     $(".fa.fa-child").parent().text("HeadA").css( "width","80px");
     $(".fa.fa-wpbeginner").parent().text("HeadD").css( "width","80px");
     $(".fa.fa-wpforms").parent().text("BodyD").css( "width","80px");
@@ -388,6 +405,7 @@ function alertOptionValue(node_id)
     $(".fa.fa-gift").parent().text("a-i").css( "width","60px");
     $(".fa.fa-hourglass").parent().text("i-II").css( "width","60px");
     $(".fa.fa-random").parent().text("II-C").css( "width","60px");
+    
 
 
 
