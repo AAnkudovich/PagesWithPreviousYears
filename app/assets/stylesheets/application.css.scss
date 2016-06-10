@@ -58,7 +58,26 @@
   font-size : 11pt; 
   font-family : Arial;
 }
-
+.second-line-indent{
+  padding-left: 10px;
+  text-indent: -10px;
+}
+.second-dual-line-indent{
+  padding-left: 20px;
+  text-indent: -20px;
+}
+.second-AI-indent{
+  padding-left: 20px;
+  text-indent: -10px;
+}
+.second-III-indent{
+  padding-left: 30px;
+  text-indent: -10px;
+}
+.second-IIC-indent{
+  padding-left: 40px;
+  text-indent: -10px;
+}
 .Drive-indent-i {
   padding-left: 20px;
   font-size : 11pt; 
