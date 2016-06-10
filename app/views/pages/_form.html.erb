@@ -95,8 +95,21 @@ function alertOptionValue(node_id)
                     follow[i].style.display = "none";
                   }
               }
+
             }
-            
+
+           var css = '.removed-' +localStorage['myKey']+' { background: rgba(193, 66, 66, 0.53); } .added-' +localStorage['myKey']+' { background: rgba(70, 191, 63, 0.53); }',
+            head = document.head || document.getElementsByTagName('head')[0],
+            style = document.createElement('style');
+
+            style.type = 'text/css';
+            if (style.styleSheet){
+              style.styleSheet.cssText = css;
+            } else {
+              style.appendChild(document.createTextNode(css));
+            }
+
+            head.appendChild(style); 
   
   jQuery(document).ready(function($) {
 
