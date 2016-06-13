@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
 
-  # GET /pages
+  before_action :set_page, only: [:show, :edit, :update, :destroy]
+  impressionist :actions => [:show]
   # GET /pages.json
   def index
 
@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-   
+   impressionist(@page, "message...")
     respond_to do |format|
       format.html
       format.pdf do 
