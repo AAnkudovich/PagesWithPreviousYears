@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :pages , :path => 'p'
   root to: "information#home"
   get 'information/home'
+  get 'information/most_viewed_pages'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
