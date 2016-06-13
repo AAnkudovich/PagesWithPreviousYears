@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610142110) do
+ActiveRecord::Schema.define(version: 20160613092146) do
 
   create_table "associations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "pagename",   limit: 65535
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20160610142110) do
     t.string   "template"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.index ["id"], name: "index_pages_on_id", using: :btree
+    t.index ["parentPage"], name: "index_pages_on_parentPage", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
