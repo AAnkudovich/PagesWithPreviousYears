@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :associations, :path => 'a'
   devise_for :users
   devise_scope :user do
 	 get "/login" => "devise/sessions#new"

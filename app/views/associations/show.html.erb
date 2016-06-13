@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<%= @page.slug%>
+<p>
+  <strong>Pagename:</strong>
+  <%= @association.pagename %>
+</p>
+
+<p>
+  <strong>Pageid:</strong>
+  <%= @association.pageID %>
+</p>
+
+<%= link_to 'Edit', edit_association_path(@association) %> |
+<%= link_to 'Back', associations_path %>
