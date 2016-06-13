@@ -1,0 +1,19 @@
+<table>
+	<thead>
+		<th>Views</th>
+		<th> Page</th>
+	</thead>
+
+<tbody>
+    <% @pages.reverse_each do |page| %>
+      <tr>
+		<th><%= page.impressions.count%></th>
+      	
+        <td><%= link_to page.title, page%></td>
+        
+        
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
