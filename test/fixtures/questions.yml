@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  content: MyText
+  userID: 1
+  voteRating: 9.99
+  resolved: false
+  viewCount: 1
+  answerCount: 1
+
+two:
+  name: MyString
+  content: MyText
+  userID: 1
+  voteRating: 9.99
+  resolved: false
+  viewCount: 1
+  answerCount: 1
