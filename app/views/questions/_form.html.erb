@@ -42,6 +42,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :category %>
+    <%= f.collection_select(:category, @categories, :id, :name, :prompt => 'Select') %>
+  </div>
+
+  <div class="field">
     <%= f.label :answerCount %>
     <%= f.number_field :answerCount %>
   </div>

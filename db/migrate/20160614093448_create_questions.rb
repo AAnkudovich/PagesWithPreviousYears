@@ -4,10 +4,10 @@ class CreateQuestions < ActiveRecord::Migration[5.0]
       t.string :name
       t.text :content
       t.integer :userID
-      t.decimal :voteRating
-      t.boolean :resolved
-      t.integer :viewCount
-      t.integer :answerCount
+      t.decimal :voteRating , :default => 0 
+      t.boolean :resolved , :default => 0 
+      t.integer :viewCount , :default => 0 
+      t.integer :answerCount , :default => 0 
 
       t.timestamps
     end
