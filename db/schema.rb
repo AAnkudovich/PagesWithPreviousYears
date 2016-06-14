@@ -11,13 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613130638) do
+ActiveRecord::Schema.define(version: 20160614100943) do
+
+  create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "content",    limit: 65535
+    t.integer  "userID"
+    t.integer  "voteRating",               default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
 
   create_table "associations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "pagename",   limit: 65535
     t.integer  "pageID"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "parentId"
+    t.integer  "questionCount", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "impressions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -54,6 +70,19 @@ ActiveRecord::Schema.define(version: 20160613130638) do
     t.datetime "updated_at",                    null: false
     t.index ["id"], name: "index_pages_on_id", using: :btree
     t.index ["parentPage"], name: "index_pages_on_parentPage", using: :btree
+  end
+
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.text     "content",     limit: 65535
+    t.integer  "userID"
+    t.decimal  "voteRating",                precision: 10, default: 0
+    t.boolean  "resolved",                                 default: false
+    t.integer  "viewCount",                                default: 0
+    t.integer  "answerCount",                              default: 0
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.integer  "category"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

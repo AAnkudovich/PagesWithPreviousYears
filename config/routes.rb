@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :answers
+  resources :questions
+  resources :categories
   resources :associations, :path => 'a'
   devise_for :users
   devise_scope :user do
