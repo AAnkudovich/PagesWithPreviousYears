@@ -7,27 +7,7 @@
 <p class= " hidden-print">
 
 
-  <%= link_to_unless_current("Home", root_path) %>
-<% 
-parentingArray = []
-if @page.parentPage!=nil
-@parent = Page.find(@page.parentPage)
-parentingArray.push(@parent)
-end
-if parentingArray[0]!=nil
-while parentingArray[parentingArray.size-1].parentPage!=nil
-@parent = Page.find(parentingArray[parentingArray.size-1].parentPage)
-parentingArray.push(@parent)
-end
-end
-%> 
-<% parentingArray.reverse_each do |page| %>
-  >> <%= link_to page.title, page%>
-
-<%end%>
-
-  >>
-  <%= @page.title %>
+ 
 </p> 
 <%if @page.template=="Listing"%>
 <% childrenPages = Page.where(:parentPage => @page.id)%>
@@ -176,7 +156,7 @@ end
             // email section/explanatory page
             function emailCurrentPage(){
               var mailto_link = 'mailto:'+""+'?subject=<%=@page.title%> - Taxworld&body=I thought this section may be of interest to you as it was in '+ localStorage['myKey'] + ' : %0D%0A' + escape(window.location.href) + '%0D%0A'+ '%0D%0APlease remember to view back years you have to be signed in with a valid membership.' + '%0D%0A' +'Taxworld Team'  ;
-              var win = window.open(mailto_link,'emailWindow');
+              window.location.href = mailto_link;
             }
             
           window.onload = function() {
