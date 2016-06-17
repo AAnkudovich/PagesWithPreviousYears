@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   # GET /pages.json
   def index
 
-    @pages = Page.where(parentPage: nil )
+    @pages = Page.all
     respond_to do |format|
       format.html
       format.pdf do 
@@ -54,7 +54,12 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to :back, notice: 'Page was successfully created.' }
+        assHash = Hash.new
+    assHash["pageID"]=@page.id
+    assHash["pagename"]=@page.title
+   @association = Association.create(assHash)
+   @association
+        format.html { redirect_to @page, notice: 'Page was successfully created.' }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new }
