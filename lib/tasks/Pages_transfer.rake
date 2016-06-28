@@ -21,7 +21,7 @@ task :import_commentary => :environment do
 	# loop through the links
 		agent.get("http://www.taxworld.ie/commentary-pages-set-artem/")
 		link.click
-		Page.create!(:title => agent.page.title, :content => agent.page.at(".page-content"), :template => "Content Page")
+		Page.create!(:title => agent.page.title[0..agent.page.title.length-20], :content => agent.page.at(".page-content"), :template => "Content Page")
 		
 		
 		
@@ -51,7 +51,7 @@ task :import_commentary => :environment do
 	# loop through the links
 		agent.get("http://www.taxworld.ie/tca-linsting-prep/")
 		link.click
-		Page.create!(:title => agent.page.title, :slug => agent.page.title.parameterize, :template => "Listing")
+		Page.create!(:title => agent.page.title[0..agent.page.title.length-20], :slug => agent.page.title.parameterize, :template => "Listing")
 		
 		
 		

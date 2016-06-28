@@ -41,6 +41,8 @@ gem 'wkhtmltopdf-binary'
 
 gem 'impressionist'
 
+gem "binding_of_caller"
+
 
 gem 'query_diet', group: :development
 group :development, :test do
