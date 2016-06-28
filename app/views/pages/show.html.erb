@@ -3,6 +3,29 @@
 </div>
 <p id="notice"><%= notice %></p>
 <div class="container">
+<p class= " hidden-print">
+  <%= link_to_unless_current("Home", root_path) %>
+<% 
+parentingArray = []
+if @page.parentPage!=nil
+@parent = Page.find(@page.parentPage)
+parentingArray.push(@parent)
+end
+if parentingArray[0]!=nil
+while parentingArray[parentingArray.size-1].parentPage!=nil
+@parent = Page.find(parentingArray[parentingArray.size-1].parentPage)
+parentingArray.push(@parent)
+end
+end
+%> 
+<% parentingArray.reverse_each do |page| %>
+  >> <%= link_to page.title, page%>
+
+<%end%>
+
+  >>
+  <%= @page.title %>
+</p> 
   
 <p class= " hidden-print">
 
