@@ -44,13 +44,12 @@ end
 
 
     <div class="btn-group pull-right hidden-print">
-        <%if @page.id>3%>
-        <% prevPage = Page.find(@page.id-3)%>
-        <% if prevPage.parentPage == @page.parentPage%>
-         <%= link_to  prevPage, class: "btn btn-default" do %>
+        <% prev = Page.where(parentPage: @page.parentPage).where(priority: @page.priority-1).first%>
+        <% if prev!=nil%>
+         <%= link_to  prev, class: "btn btn-default" do %>
             <i class="fa fa-caret-left fa-lg"></i>
           <%end%>
-          <%end%>
+          
           <%end%>
 
                   
@@ -75,6 +74,13 @@ end
                 <%end%>
               
             <% end %>
+            <% nextp = Page.where(parentPage: @page.parentPage).where(priority: @page.priority+1).first%>
+            <% if nextp!=nil%>
+             <%= link_to  nextp, class: "btn btn-default" do %>
+                <i class="fa fa-caret-right fa-lg"></i>
+              <%end%>
+              
+              <%end%>
 
 
 

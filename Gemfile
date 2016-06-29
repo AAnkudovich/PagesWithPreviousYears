@@ -43,6 +43,8 @@ gem 'impressionist'
 
 gem "binding_of_caller"
 
+gem 'jquery-ui-rails'
+
 
 gem 'query_diet', group: :development
 group :development, :test do
