@@ -47,8 +47,10 @@ class PagesController < ApplicationController
     if @page.parentPage != nil 
     @parentPage = Page.find(@page.parentPage)
     @page.slug = @parentPage.slug + "/" + @page.title.parameterize
+    @page.priority = Page.where(parentPage: @page.parentPage).maximum("priority")+1
   else
     @page.slug = @page.title.parameterize
+    @page.priority = Page.where(parentPage: nil).maximum("priority")+1
   end
     
 
@@ -122,6 +124,14 @@ class PagesController < ApplicationController
       format.html { redirect_to pages_url, notice: 'Page was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def sort
+    params[:page].each_with_index do |id,index| 
+      page = Page.find(id)
+      page.update({priority: index+1})
+    end
+    render nothing: true
   end
 
   private

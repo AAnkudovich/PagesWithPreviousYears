@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require froala_editor.min.js
 //= require plugins/align.min.js

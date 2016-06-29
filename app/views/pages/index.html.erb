@@ -1,35 +1,58 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Pages</h1>
- <div class="jumbotron">
-    <div class="container">
-      <h1>Welcome!</h1>
-      <p>Register to get started.</p>
-      <p>
-        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
-      </p>
-    </div>
-  </div>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pages.each do |page| %>
-      <tr>
-        <td><%= link_to page.title, page%></td>
-        
-        
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <br>
 
-<%= link_to 'New Page', new_page_path %>
+<h1>List of pages</h1>
+<% @topLevelPages = Page.where(parentPage: nil).order("priority") %>
+
+
+<ul class="sortable-page-view" data-update-url="<%= sort_pages_url %>">
+  <% @topLevelPages.each do |page| %>
+    <li id="page_<%= page.id%>">
+      <%= link_to page.title, page %>
+        <% @secondLevelPages = Page.where(parentPage: page.id).order("priority") %>
+        <% if @secondLevelPages.any?%>
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ul_<%= page.id %>"><i class="fa fa-level-down"></i></button>         
+
+        <ul class="sortable-page-view collapse" id="ul_<%= page.id %>" data-update-url="<%= sort_pages_url %>">
+            <% @secondLevelPages.each do |childpage| %>
+            <li id="page_<%=childpage.id%>">
+            <%= link_to childpage.title, childpage %>
+            <% @thirdLevelPages = Page.where(parentPage: childpage.id).order("priority") %>
+            <% if @thirdLevelPages.any?%>
+              <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ul_<%= childpage.id %>"><i class="fa fa-level-down"></i></button>         
+
+              <ul class="sortable-page-view collapse" id="ul_<%= childpage.id %>" data-update-url="<%= sort_pages_url %>">
+                <% @thirdLevelPages.each do |granchildpage| %>
+                  <li id="page_<%=granchildpage.id%>">
+                    <%= link_to granchildpage.title, granchildpage %>
+                    <% @fourthLevelPages = Page.where(parentPage: granchildpage.id).order("priority") %>
+                    <% if @fourthLevelPages.any?%>
+                      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ul_<%= granchildpage.id %>"><i class="fa fa-level-down"></i></button>         
+
+                      <ul class="sortable-page-view collapse" id="ul_<%= granchildpage.id %>">
+                        <% @fourthLevelPages.each do |greatgranchildpage| %>
+                        <li id="page_<%= greatgranchildpage.id %>"><%= link_to greatgranchildpage.title , greatgranchildpage %></li>
+                        <% @fifthLevelPages = Page.where(parentPage: greatgranchildpage.id).order("priority") %>
+                          <ul class="sortable-page-view" data-update-url="<%= sort_pages_url %>">
+                          <% @fifthLevelPages.each do |greatgreatgranchildpage| %>
+                          <li id="page_<%= greatgreatgranchildpage.id %>"><%= link_to greatgreatgranchildpage.title , greatgreatgranchildpage %></li>
+                          
+                          <%end%>
+                        </ul>
+                        <%end%>
+                      </ul>
+                    <%end%>
+                  </li>
+               <%end%>
+              </ul>
+            <%end%>
+            </li>
+          <%end%>
+          </ul>
+        <%end%>
+        
+        
+    </li>
+  <% end %>
+  </ul>
