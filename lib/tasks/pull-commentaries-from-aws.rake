@@ -1,5 +1,6 @@
 
 desc "Import Commentary Pages"
+number=1
 task :import_commentary_tca => :environment do 
 	require 'mechanize'
 
@@ -17,13 +18,14 @@ task :import_commentary_tca => :environment do
 	# get all the Commentary links
 	# agent.page.links_with(:text => "Commentary").click
 	
-	number=0
+	
+
 	agent.page.links_with(:text => "Commentary").each do |link|
 	# loop through the links
 		agent.get("https://s3-eu-west-1.amazonaws.com/taxworld-ie/TCA.html")
 		link.click
-		Page.create!(:title => agent.page.title[0..agent.page.title.length-20], :content => agent.page.at(".page-content"), :template => "Commentary", :slug => agent.page.title[0..agent.page.title.length-20].parameterize)
-		
+		page = Page.create!(:title => agent.page.title[0..agent.page.title.length-20], :content => agent.page.at(".page-content"), :template => "Commentary", :slug => agent.page.title[0..agent.page.title.length-20].parameterize, :priority =>number)
+		Association.create(:pageID => page.id, :pagename => page.title)
 		number=number+1
 		puts "TCA #{number}"
 		
@@ -49,13 +51,13 @@ task :import_commentary_vatca => :environment do
 	# get all the Commentary links
 	# agent.page.links_with(:text => "Commentary").click
 	
-	number=0
+	
 	agent.page.links_with(:text => "Commentary").each do |link|
 	# loop through the links
 		agent.get("https://s3-eu-west-1.amazonaws.com/taxworld-ie/VATCA2010.html")
 		link.click
-		Page.create!(:title => agent.page.title[0..agent.page.title.length-20], :content => agent.page.at(".page-content"), :template => "Commentary", :slug => agent.page.title[0..agent.page.title.length-20].parameterize)
-		
+		page = Page.create!(:title => agent.page.title[0..agent.page.title.length-20], :content => agent.page.at(".page-content"), :template => "Commentary", :slug => agent.page.title[0..agent.page.title.length-20].parameterize, :priority =>number)
+		Association.create(:pageID => page.id, :pagename => page.title)
 		number=number+1
 		puts "VATCA #{number}"
 		
@@ -80,13 +82,12 @@ task :import_commentary_vatca => :environment do
 	# get all the Commentary links
 	# agent.page.links_with(:text => "Commentary").click
 	
-	number=0
 	agent.page.links_with(:text => "Commentary").each do |link|
 	# loop through the links
 		agent.get("https://s3-eu-west-1.amazonaws.com/taxworld-ie/CATCA2003.html")
 		link.click
-		Page.create!(:title => agent.page.title[0..agent.page.title.length-20], :content => agent.page.at(".page-content"), :template => "Commentary", :slug => agent.page.title[0..agent.page.title.length-20].parameterize)
-		
+		page = Page.create!(:title => agent.page.title[0..agent.page.title.length-20], :content => agent.page.at(".page-content"), :template => "Commentary", :slug => agent.page.title[0..agent.page.title.length-20].parameterize, :priority =>number)
+		Association.create(:pageID => page.id, :pagename => page.title)
 		number=number+1
 		puts "CATCA #{number}"
 		
@@ -111,13 +112,12 @@ task :import_commentary_vatca => :environment do
 	# get all the Commentary links
 	# agent.page.links_with(:text => "Commentary").click
 	
-	number=0
 	agent.page.links_with(:text => "Commentary").each do |link|
 	# loop through the links
 		agent.get("https://s3-eu-west-1.amazonaws.com/taxworld-ie/SDCA1999.html")
 		link.click
-		Page.create!(:title => agent.page.title[0..agent.page.title.length-20], :content => agent.page.at(".page-content"), :template => "Commentary", :slug => agent.page.title[0..agent.page.title.length-20].parameterize)
-		
+		page = Page.create!(:title => agent.page.title[0..agent.page.title.length-20], :content => agent.page.at(".page-content"), :template => "Commentary", :slug => agent.page.title[0..agent.page.title.length-20].parameterize, :priority =>number)
+		Association.create(:pageID => page.id, :pagename => page.title)
 		number=number+1
 		puts "SDCA #{number}"
 		
