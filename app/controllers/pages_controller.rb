@@ -47,10 +47,9 @@ class PagesController < ApplicationController
     if @page.parentPage != nil 
     @parentPage = Page.find(@page.parentPage)
     @page.slug = @parentPage.slug + "/" + @page.title.parameterize
-    @page.priority = Page.where(parentPage: @page.parentPage).maximum("priority")+1
   else
     @page.slug = @page.title.parameterize
-    @page.priority = Page.where(parentPage: nil).maximum("priority")+1
+    
   end
     
 
@@ -142,6 +141,6 @@ class PagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:title, :content, :slug, :parentPage, :template)
+      params.require(:page).permit(:title, :content, :slug, :parentPage, :template, :priority)
     end
 end
