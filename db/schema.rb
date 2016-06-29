@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614100943) do
+ActiveRecord::Schema.define(version: 20160628141717) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "content",    limit: 65535
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20160614100943) do
     t.string   "template"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.integer  "priority"
     t.index ["id"], name: "index_pages_on_id", using: :btree
     t.index ["parentPage"], name: "index_pages_on_parentPage", using: :btree
   end
