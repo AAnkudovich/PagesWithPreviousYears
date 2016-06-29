@@ -11,6 +11,19 @@
     </div>
   <% end %>
 <div class="col-sm-9">
+<!-- set value to be used in the priority box -->
+<% prioritytobeused = params[:priority]
+  if prioritytobeused == nil
+    if Page.where(parentPage: params[:parent]).maximum("priority")!=nil
+      prioritytobeused = Page.where(parentPage: params[:parent]).maximum("priority")+1
+    else
+      prioritytobeused=1
+    end
+  
+
+  end%>
+
+
   <h2 class="display-the-year-being-edited"> </h2>
   <div class="field">
     <%= f.label :title %>
@@ -36,6 +49,10 @@
   <div class="field">
     <%= f.label :template %>
     <%= f.text_field :template %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %>
+    <%= f.number_field :priority, :value => prioritytobeused  %>
   </div>
 </div>
 
@@ -112,6 +129,9 @@ function alertOptionValue(node_id)
             head.appendChild(style); 
   
   jQuery(document).ready(function($) {
+    // set parent value selected depending on what parameters were passed
+    $('#page_parentPage option[value="<%= params[:parent] %>"]').attr('selected', 'selected');
+
 
     $(".display-the-year-being-edited").text(" The year currently being edited is "+localStorage['myKey']);
     

@@ -9,7 +9,10 @@
 <ul class="sortable-page-view" data-update-url="<%= sort_pages_url %>">
   <% @topLevelPages.each do |page| %>
     <li id="page_<%= page.id%>">
-      <%= link_to page.title, page %>
+      <%= link_to page.title, page %> 
+      <%= link_to "  Add after", new_page_path(:parent => page.parentPage, :priority => page.priority+1), class: "btn btn-default"%>
+
+      <%= link_to "  Add as child", new_page_path(:parent => page.id), class: "btn btn-default"%>
         <% @secondLevelPages = Page.where(parentPage: page.id).order("priority") %>
         <% if @secondLevelPages.any?%>
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ul_<%= page.id %>"><i class="fa fa-level-down"></i></button>         
@@ -17,7 +20,7 @@
         <ul class="sortable-page-view collapse" id="ul_<%= page.id %>" data-update-url="<%= sort_pages_url %>">
             <% @secondLevelPages.each do |childpage| %>
             <li id="page_<%=childpage.id%>">
-            <%= link_to childpage.title, childpage %>
+            <%= link_to childpage.title, childpage %><%= link_to "Add after", new_page_path(:parent => childpage.parentPage, :priority => childpage.priority+1)%>
             <% @thirdLevelPages = Page.where(parentPage: childpage.id).order("priority") %>
             <% if @thirdLevelPages.any?%>
               <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ul_<%= childpage.id %>"><i class="fa fa-level-down"></i></button>         
